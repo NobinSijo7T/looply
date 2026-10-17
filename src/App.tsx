@@ -108,7 +108,7 @@ export function App() {
   };
 
   return (
-    <div className="min-h-screen bg-white flex flex-col font-sans selection:bg-[#E8EBFF] selection:text-[#17183F] overflow-x-hidden">
+    <div className="min-h-screen bg-white flex flex-col font-sans selection:bg-[#E8EBFF] selection:text-[#17183F] overflow-x-clip">
       {/* 1. Navigation Bar */}
       <Navbar
         savedCount={savedActivityIds.length}

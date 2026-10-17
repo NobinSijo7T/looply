@@ -1,4 +1,5 @@
 import React, { useCallback, useEffect, useRef } from 'react';
+import { getLenis } from '../utils/lenis';
 import './ScrollExpand.css';
 
 const clamp = (v: number, a: number, b: number): number => (v < a ? a : v > b ? b : v);
@@ -205,18 +206,33 @@ export const ScrollExpand: React.FC<ScrollExpandProps> = ({
     target = readProgress();
     current = target;
     applyProgress(current);
-
     const scroller = useWindowScroll ? window : root;
     scroller.addEventListener('scroll', onScroll, { passive: true });
     window.addEventListener('resize', onResize);
     const ro = new ResizeObserver(onResize);
     ro.observe(root);
 
+    // Subscribe to Lenis smooth scroll for frame-accurate updates
+    const lenis = getLenis();
+    const handleLenisScroll = () => {
+      onScroll();
+    };
+    if (lenis && useWindowScroll) {
+      lenis.on('scroll', handleLenisScroll);
+    }
+
+    // Delayed measurement to ensure fonts and layout have settled
+    const timer = setTimeout(onResize, 60);
+
     return () => {
+      clearTimeout(timer);
       if (raf) cancelAnimationFrame(raf);
       scroller.removeEventListener('scroll', onScroll);
       window.removeEventListener('resize', onResize);
       ro.disconnect();
+      if (lenis && useWindowScroll) {
+        lenis.off('scroll', handleLenisScroll);
+      }
     };
   }, [applyProgress, useWindowScroll]);
 

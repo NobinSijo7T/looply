@@ -9,7 +9,7 @@ interface ScrollExpandSectionProps {
 
 export const ScrollExpandSection: React.FC<ScrollExpandSectionProps> = ({ onExploreClick }) => {
   return (
-    <section className="relative w-full bg-[#12132D] text-white overflow-hidden">
+    <section className="relative w-full bg-[#12132D] text-white">
       <ScrollExpand
         src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=2000&q=85"
         alt="Scenic local mountain lake at sunset"
@@ -20,9 +20,9 @@ export const ScrollExpandSection: React.FC<ScrollExpandSectionProps> = ({ onExpl
         startRadius={32}
         endRadius={0}
         mediaZoom={1.35}
-        scrollDistance={1.1}
-        holdDistance={0.4}
-        smoothing={0.12}
+        scrollDistance={1.6}
+        holdDistance={1.2}
+        smoothing={0}
         overlayScrim={0.65}
         useWindowScroll={true}
         className="w-full"
