@@ -1,0 +1,19 @@
+{
+  "redirects": [
+    {
+      "source": "/mobile-prototype",
+      "destination": "https://drive.google.com/file/d/1IkrYmLQ5n3V_zufdIc8wnU0a2rgng01O/view?usp=drive_link",
+      "permanent": false
+    },
+    {
+      "source": "/figma-design",
+      "destination": "https://www.figma.com/design/7kwqERmwdH4qnRM2p1T0aU/Looply",
+      "permanent": false
+    },
+    {
+      "source": "/product-video",
+      "destination": "https://drive.google.com/file/d/1bTJMJUKCX3hEzAsffn1gWVwu6CbbTV1t/view?usp=sharing",
+      "permanent": false
+    }
+  ]
+}

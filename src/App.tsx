@@ -110,10 +110,7 @@ export function App() {
   return (
     <div className="min-h-screen bg-white flex flex-col font-sans selection:bg-[#E8EBFF] selection:text-[#17183F] overflow-x-clip">
       {/* 1. Navigation Bar */}
-      <Navbar
-        savedCount={savedActivityIds.length}
-        onOpenSavedList={() => setActiveModal('saved_list')}
-      />
+      <Navbar />
 
       <main className="flex-1">
         {/* 2. Hero Section + 3. Overlapping Mobile App Preview */}
