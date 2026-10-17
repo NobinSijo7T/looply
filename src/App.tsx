@@ -16,6 +16,7 @@ import { initLenis, smoothScrollTo } from './utils/lenis';
 import { SaveExplanationModal } from './components/modals/SaveExplanationModal';
 import { RegistrationModal } from './components/modals/RegistrationModal';
 import { SaveSuccessModal } from './components/modals/SaveSuccessModal';
+import { SavedActivitiesDrawer } from './components/modals/SavedActivitiesDrawer';
 import { ActivityDetailModal } from './components/modals/ActivityDetailModal';
 import { SignInModal } from './components/modals/SignInModal';
 import { ShareModal } from './components/modals/ShareModal';
@@ -120,6 +121,7 @@ export function App() {
           onExploreClick={() => scrollTo('discovery')}
           onHowItWorksClick={() => scrollTo('how-it-works')}
           savedCount={savedActivityIds.length}
+          onPreviewMockup={setPreviewScreenshot}
         />
 
         {/* 4. Activity Discovery Section */}
@@ -133,16 +135,17 @@ export function App() {
         <FeatureGrid
           onExploreClick={() => scrollTo('discovery')}
           onOpenSavedList={() => setActiveModal('saved_list')}
+          onPreviewMockup={setPreviewScreenshot}
         />
 
         {/* 6. How Looply Works */}
-        <HowItWorks />
+        <HowItWorks onPreviewMockup={setPreviewScreenshot} />
 
         {/* 6.5. 3D Interactive Drift Wall Showcase */}
         <DriftWallSection onExploreClick={() => scrollTo('discovery')} />
 
         {/* 7. Why Looply Section */}
-        <WhyLooply />
+        <WhyLooply onPreviewMockup={setPreviewScreenshot} />
 
         {/* 7.5. Full-Bleed Scroll Expand Experience */}
         <ScrollExpandSection onExploreClick={() => scrollTo('discovery')} />
@@ -154,6 +157,7 @@ export function App() {
         <FinalCTA
           onExploreClick={() => scrollTo('discovery')}
           onHowItWorksClick={() => scrollTo('how-it-works')}
+          onPreviewMockup={setPreviewScreenshot}
         />
       </main>
 
@@ -235,6 +239,13 @@ export function App() {
           setActiveModal(null);
           setInfoModalContent(null);
         }}
+      />
+
+      {/* MODAL 9: Real App Mockup Lightbox Modal */}
+      <MockupLightboxModal
+        screenshot={previewScreenshot}
+        isOpen={!!previewScreenshot}
+        onClose={() => setPreviewScreenshot(null)}
       />
 
     </div>

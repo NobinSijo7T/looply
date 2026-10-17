@@ -1,7 +1,6 @@
 import React from 'react';
-import { Bookmark, CheckCircle2, Sparkles, Compass, ArrowRight } from 'lucide-react';
+import { CheckCircle2, Sparkles, ArrowRight } from 'lucide-react';
 import { APP_SCREENSHOTS, type AppScreenshotItem } from '../data/appScreenshots';
-import { PhoneFrame } from './common/PhoneFrame';
 
 interface HowItWorksProps {
   onPreviewMockup?: (screenshot: AppScreenshotItem) => void;

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Compass, BookmarkCheck, Sparkles, Layers, ShieldCheck, Heart } from 'lucide-react';
+import { Compass, BookmarkCheck, Sparkles, Layers, ShieldCheck } from 'lucide-react';
 import { APP_SCREENSHOTS, type AppScreenshotItem } from '../data/appScreenshots';
 
 interface WhyLooplyProps {

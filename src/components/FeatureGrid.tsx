@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Compass, Bookmark, Share2, Sparkles, ExternalLink, Calendar, MapPin } from 'lucide-react';
+import { Compass, Bookmark, Share2, Sparkles } from 'lucide-react';
 import { ACTIVITIES } from '../data/activities';
 import { APP_SCREENSHOTS, type AppScreenshotItem } from '../data/appScreenshots';
 import { PhoneFrame } from './common/PhoneFrame';
