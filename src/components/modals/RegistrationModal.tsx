@@ -142,6 +142,11 @@ export const RegistrationModal: React.FC<RegistrationModalProps> = ({
             <span>Back</span>
           </button>
 
+          <div className="flex items-center gap-1.5">
+            <img src="/logo_violet.png" alt="Looply Logo" className="w-4 h-4 object-contain" />
+            <span className="font-heading font-extrabold text-xs text-[#17183F]">looply</span>
+          </div>
+
           <button
             onClick={onClose}
             className="text-[#73758A] hover:text-[#17183F] p-1.5 rounded-full hover:bg-[#FAFAFC] transition-colors cursor-pointer"

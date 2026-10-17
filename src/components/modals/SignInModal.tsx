@@ -75,6 +75,13 @@ export const SignInModal: React.FC<SignInModalProps> = ({
           <X className="w-5 h-5" />
         </button>
 
+        <div className="flex items-center gap-2 mb-3">
+          <img src="/logo_violet.png" alt="Looply Logo" className="w-5 h-5 object-contain" />
+          <span className="font-heading font-extrabold text-xs text-[#6F86F8] uppercase tracking-wider">
+            Looply Account
+          </span>
+        </div>
+
         <h3 id="signin-title" className="text-2xl font-bold text-[#17183F] font-heading mb-1.5">
           Welcome back.
         </h3>

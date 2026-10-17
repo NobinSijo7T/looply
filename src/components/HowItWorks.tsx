@@ -1,15 +1,18 @@
 import React from 'react';
-import { Bookmark, CheckCircle2 } from 'lucide-react';
-import { ACTIVITIES } from '../data/activities';
+import { Bookmark, CheckCircle2, Sparkles, Compass, ArrowRight } from 'lucide-react';
+import { APP_SCREENSHOTS, type AppScreenshotItem } from '../data/appScreenshots';
+import { PhoneFrame } from './common/PhoneFrame';
 
-export const HowItWorks: React.FC = () => {
-  const sampleActivity = ACTIVITIES[0];
+interface HowItWorksProps {
+  onPreviewMockup?: (screenshot: AppScreenshotItem) => void;
+}
 
+export const HowItWorks: React.FC<HowItWorksProps> = ({ onPreviewMockup }) => {
   return (
     <section id="how-it-works" className="py-16 md:py-24 bg-white scroll-mt-20">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
         {/* Section Header */}
-        <div className="max-w-3xl mx-auto mb-16">
+        <div className="max-w-3xl mx-auto mb-12">
           <span className="text-xs font-bold text-[#6F86F8] uppercase tracking-wider block mb-2">
             The Journey
           </span>
@@ -21,11 +24,39 @@ export const HowItWorks: React.FC = () => {
           </p>
         </div>
 
-        {/* 3 Step Cards Grid */}
+        {/* Discovery Journey Feature Banner (Features Discover Your Local Adventures Illustration) */}
+        <div
+          onClick={() => onPreviewMockup?.(APP_SCREENSHOTS.discoverJourney)}
+          className="bg-gradient-to-r from-[#EEF1FF] via-[#FAFAFC] to-[#EEF1FF] rounded-3xl p-6 sm:p-8 border border-[#E6E7EF] mb-12 flex flex-col md:flex-row items-center justify-between gap-6 text-left cursor-pointer hover:border-[#6F86F8]/40 transition-all group shadow-xs"
+          title="Click to view full illustration"
+        >
+          <div className="space-y-3 max-w-lg">
+            <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white text-[#6F86F8] text-xs font-semibold shadow-xs">
+              <Sparkles className="w-3.5 h-3.5" />
+              <span>A Winding Path of Discovery</span>
+            </div>
+            <h3 className="text-2xl sm:text-3xl font-extrabold text-[#17183F] font-heading leading-snug">
+              Follow the loop of local life.
+            </h3>
+            <p className="text-sm text-[#73758A] leading-relaxed">
+              Step out of routine and follow gentle pins toward coastal trails, fragrant specialty coffee, and neighborhood ceramics studios.
+            </p>
+          </div>
+
+          <div className="w-full md:w-auto md:max-w-md shrink-0 overflow-hidden rounded-2xl">
+            <img
+              src={APP_SCREENSHOTS.discoverJourney.src}
+              alt={APP_SCREENSHOTS.discoverJourney.alt}
+              className="w-full h-auto max-h-56 object-contain group-hover:scale-105 transition-transform duration-500"
+            />
+          </div>
+        </div>
+
+        {/* 3 Step Cards Grid with Real App Mockups */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 text-left relative">
           
-          {/* STEP 1: Discover */}
-          <div className="bg-[#FAFAFC] rounded-3xl p-6 sm:p-7 border border-[#E6E7EF] flex flex-col justify-between hover:border-[#6F86F8]/30 transition-all duration-200">
+          {/* STEP 1: Discover (Features Homescreen Mockup) */}
+          <div className="bg-[#FAFAFC] rounded-3xl p-6 sm:p-7 border border-[#E6E7EF] flex flex-col justify-between hover:border-[#6F86F8]/30 hover:shadow-lg transition-all duration-200 group">
             <div>
               <div className="flex items-center justify-between mb-5">
                 <span className="w-8 h-8 rounded-full bg-[#17183F] text-white text-xs font-bold flex items-center justify-center">
@@ -39,44 +70,32 @@ export const HowItWorks: React.FC = () => {
                 Discover
               </h3>
               <p className="text-sm text-[#73758A] leading-relaxed mb-6">
-                Browse local activities and explore Walk, Food, and Art.
+                Browse local activities freely and explore Walk, Food, and Art without being forced to sign up first.
               </p>
             </div>
 
-            {/* Illustration: Miniature discovery feed */}
-            <div className="bg-white rounded-2xl p-3 border border-[#E6E7EF] shadow-xs space-y-2.5">
-              <div className="flex gap-1.5 pb-2 border-b border-[#F0F1F6]">
-                <span className="text-[10px] bg-[#6F86F8] text-white px-2 py-0.5 rounded-full font-bold">
-                  All
-                </span>
-                <span className="text-[10px] bg-[#FAFAFC] text-[#73758A] px-2 py-0.5 rounded-full">
-                  Walk
-                </span>
-                <span className="text-[10px] bg-[#FAFAFC] text-[#73758A] px-2 py-0.5 rounded-full">
-                  Food
-                </span>
-                <span className="text-[10px] bg-[#FAFAFC] text-[#73758A] px-2 py-0.5 rounded-full">
-                  Art
-                </span>
-              </div>
-              <div className="flex gap-2 items-center">
+            {/* Real App Mockup Preview */}
+            <div
+              onClick={() => onPreviewMockup?.(APP_SCREENSHOTS.homescreen)}
+              className="bg-white rounded-2xl p-4 border border-[#E6E7EF] shadow-xs cursor-pointer hover:border-[#6F86F8]/40 transition-all flex flex-col items-center"
+              title="Click to view Homescreen"
+            >
+              <div className="w-40 overflow-hidden rounded-2xl max-h-52 shadow-inner">
                 <img
-                  src={sampleActivity.image}
-                  alt={sampleActivity.title}
-                  className="w-12 h-12 rounded-lg object-cover"
+                  src={APP_SCREENSHOTS.homescreen.src}
+                  alt={APP_SCREENSHOTS.homescreen.alt}
+                  className="w-full object-cover group-hover:scale-105 transition-transform"
                 />
-                <div className="min-w-0 flex-1">
-                  <h5 className="font-bold text-xs text-[#17183F] truncate">
-                    {sampleActivity.title}
-                  </h5>
-                  <span className="text-[10px] text-[#73758A]">{sampleActivity.duration}</span>
-                </div>
               </div>
+              <span className="text-[11px] font-semibold text-[#6F86F8] mt-3 inline-flex items-center gap-1">
+                <span>Discovery Feed Screen</span>
+                <ArrowRight className="w-3 h-3 group-hover:translate-x-0.5 transition-transform" />
+              </span>
             </div>
           </div>
 
-          {/* STEP 2: Save an activity */}
-          <div className="bg-[#FAFAFC] rounded-3xl p-6 sm:p-7 border border-[#E6E7EF] flex flex-col justify-between hover:border-[#6F86F8]/30 transition-all duration-200">
+          {/* STEP 2: Save an activity (Features 3.png Mockup) */}
+          <div className="bg-[#FAFAFC] rounded-3xl p-6 sm:p-7 border border-[#E6E7EF] flex flex-col justify-between hover:border-[#6F86F8]/30 hover:shadow-lg transition-all duration-200 group">
             <div>
               <div className="flex items-center justify-between mb-5">
                 <span className="w-8 h-8 rounded-full bg-[#6F86F8] text-white text-xs font-bold flex items-center justify-center">
@@ -90,31 +109,32 @@ export const HowItWorks: React.FC = () => {
                 Save an activity
               </h3>
               <p className="text-sm text-[#73758A] leading-relaxed mb-6">
-                Find something you like and tap Save. We'll explain why a free account is needed.
+                Found something you like? Tap Save. We’ll explain why a quick free account is needed to preserve your list.
               </p>
             </div>
 
-            {/* Illustration: Save action + explanation callout */}
-            <div className="bg-white rounded-2xl p-3 border border-[#E6E7EF] shadow-xs space-y-2">
-              <div className="flex items-center justify-between">
-                <span className="text-[11px] font-bold text-[#17183F]">
-                  Keep this activity handy
-                </span>
-                <div className="w-6 h-6 rounded-full bg-[#EEF1FF] text-[#6F86F8] flex items-center justify-center">
-                  <Bookmark className="w-3.5 h-3.5 fill-[#6F86F8]" />
-                </div>
+            {/* Real App Mockup Preview */}
+            <div
+              onClick={() => onPreviewMockup?.(APP_SCREENSHOTS.stepSave)}
+              className="bg-white rounded-2xl p-4 border border-[#E6E7EF] shadow-xs cursor-pointer hover:border-[#6F86F8]/40 transition-all flex flex-col items-center"
+              title="Click to view Onboarding Step 3"
+            >
+              <div className="w-40 overflow-hidden rounded-2xl max-h-52 shadow-inner">
+                <img
+                  src={APP_SCREENSHOTS.stepSave.src}
+                  alt={APP_SCREENSHOTS.stepSave.alt}
+                  className="w-full object-cover group-hover:scale-105 transition-transform"
+                />
               </div>
-              <p className="text-[10px] text-[#73758A] leading-tight">
-                Create a free account to save this to your personal list.
-              </p>
-              <div className="text-[9px] bg-[#EEF1FF] text-[#6F86F8] py-1 px-2 rounded-lg font-semibold text-center">
-                Short email & password only
-              </div>
+              <span className="text-[11px] font-semibold text-[#6F86F8] mt-3 inline-flex items-center gap-1">
+                <span>"Found Something You Love?"</span>
+                <ArrowRight className="w-3 h-3 group-hover:translate-x-0.5 transition-transform" />
+              </span>
             </div>
           </div>
 
-          {/* STEP 3: Come back to it */}
-          <div className="bg-[#FAFAFC] rounded-3xl p-6 sm:p-7 border border-[#E6E7EF] flex flex-col justify-between hover:border-[#6F86F8]/30 transition-all duration-200">
+          {/* STEP 3: Come back to it (Features Event Saved Mockup) */}
+          <div className="bg-[#FAFAFC] rounded-3xl p-6 sm:p-7 border border-[#E6E7EF] flex flex-col justify-between hover:border-[#6F86F8]/30 hover:shadow-lg transition-all duration-200 group">
             <div>
               <div className="flex items-center justify-between mb-5">
                 <span className="w-8 h-8 rounded-full bg-[#17865D] text-white text-xs font-bold flex items-center justify-center">
@@ -128,24 +148,26 @@ export const HowItWorks: React.FC = () => {
                 Come back to it
               </h3>
               <p className="text-sm text-[#73758A] leading-relaxed mb-6">
-                Create your account and find your saved activity in your personal list.
+                Receive instant confirmation and find your saved activities waiting in your personal list whenever you plan your day.
               </p>
             </div>
 
-            {/* Illustration: Success state + saved item */}
-            <div className="bg-white rounded-2xl p-3 border border-[#BDF4DE] shadow-xs space-y-2">
-              <div className="flex items-center gap-1.5 text-[11px] font-bold text-[#17865D]">
-                <CheckCircle2 className="w-4 h-4 text-[#17865D]" />
-                <span>Saved to your personal list</span>
+            {/* Real App Mockup Preview */}
+            <div
+              onClick={() => onPreviewMockup?.(APP_SCREENSHOTS.eventSaved)}
+              className="bg-white rounded-2xl p-4 border border-[#BDF4DE] shadow-xs cursor-pointer hover:border-[#17865D]/50 transition-all flex flex-col items-center"
+              title="Click to view Saved confirmation"
+            >
+              <div className="w-40 overflow-hidden rounded-2xl max-h-52 shadow-inner">
+                <img
+                  src={APP_SCREENSHOTS.eventSaved.src}
+                  alt={APP_SCREENSHOTS.eventSaved.alt}
+                  className="w-full object-cover -translate-y-8 group-hover:scale-105 transition-transform"
+                />
               </div>
-              <div className="flex items-center gap-2 p-1.5 bg-[#FAFAFC] rounded-lg">
-                <span className="w-2 h-2 rounded-full bg-[#17865D]" />
-                <span className="text-[10px] text-[#202139] truncate font-medium">
-                  {sampleActivity.title}
-                </span>
-              </div>
-              <span className="text-[9px] text-[#73758A] block">
-                Ready whenever you're planning your day
+              <span className="text-[11px] font-semibold text-[#17865D] mt-3 inline-flex items-center gap-1">
+                <span>Saved Confirmation Modal</span>
+                <CheckCircle2 className="w-3.5 h-3.5" />
               </span>
             </div>
           </div>

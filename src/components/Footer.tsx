@@ -18,14 +18,6 @@ export const Footer: React.FC<FooterProps> = ({
     if (el) el.scrollIntoView({ behavior: 'smooth' });
   };
 
-  const showContactModal = () => {
-    onOpenInfoModal({
-      title: 'Get in Touch',
-      subtitle: 'Looply Product & Feedback',
-      body:
-        'Looply is an interactive product discovery prototype designed to evaluate seamless, frictionless local activity saving.\n\nFor design evaluations, technical inquiries, or questions about this assessment build, feel free to contact hello@looply.local.',
-    });
-  };
 
   const showPrivacyModal = () => {
     onOpenInfoModal({
@@ -104,8 +96,22 @@ export const Footer: React.FC<FooterProps> = ({
         {/* Upper & Middle Section: Editorial Columns */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-10 lg:gap-8 pb-20 pt-8">
           
-          {/* Spacer on desktop for visual balance */}
-          <div className="hidden lg:block lg:col-span-5" />
+          {/* Left Column: Brand & Tagline with logo_violet.png */}
+          <div className="lg:col-span-5 space-y-6 text-left">
+            <div className="flex items-center gap-3">
+              <img
+                src="/logo_violet.png"
+                alt="Looply Logo"
+                className="w-10 h-10 object-contain shrink-0"
+              />
+              <span className="font-heading font-black text-2xl sm:text-3xl tracking-tight text-[#17183F]">
+                looply
+              </span>
+            </div>
+            <p className="text-sm sm:text-base text-[#73758A] max-w-sm leading-relaxed">
+              Discover local walks, food experiences, and creative activities. Explore freely, save what you love, and return whenever you're ready.
+            </p>
+          </div>
 
           {/* Middle Column: Activities & Local Mission */}
           <div className="lg:col-span-3 space-y-12 text-left">
@@ -230,11 +236,6 @@ export const Footer: React.FC<FooterProps> = ({
               </div>
             </div>
 
-            {/* Design & Concept Credits */}
-            <div className="text-xs text-[#73758A] space-y-0.5 pt-2">
-              <p>Design: <strong className="text-[#17183F] font-semibold">Looply Systems</strong></p>
-              <p>Build: <span className="text-[#17183F] font-semibold">React · TypeScript · Tailwind CSS</span></p>
-            </div>
           </div>
 
         </div>
@@ -243,25 +244,21 @@ export const Footer: React.FC<FooterProps> = ({
         <div className="pt-8 border-t border-[#17183F]/10 flex flex-col sm:flex-row sm:items-end justify-between gap-6">
           
           <div className="text-left space-y-4">
-            {/* Giant Typographic Anchor */}
-            <div className="flex items-baseline gap-2 sm:gap-3">
-              <span className="font-heading font-black text-6xl sm:text-7xl md:text-8xl lg:text-[7.5rem] tracking-tighter text-[#17183F] leading-none select-none">
-                looply
-              </span>
-              <span className="inline-block w-10 sm:w-16 lg:w-24 h-2.5 sm:h-3.5 bg-[#17183F] rounded-full" />
+            {/* Giant Typographic Anchor with Violet Accent Logo */}
+            <div className="flex items-center gap-4 sm:gap-6">
+              <img
+                src="/logo_violet.png"
+                alt="Looply Logo"
+                className="w-16 h-16 sm:w-20 sm:h-20 lg:w-24 lg:h-24 object-contain shrink-0"
+              />
+              <div className="flex items-baseline gap-2 sm:gap-3">
+                <span className="font-heading font-black text-6xl sm:text-7xl md:text-8xl lg:text-[7.5rem] tracking-tighter text-[#17183F] leading-none select-none">
+                  looply
+                </span>
+                <span className="inline-block w-10 sm:w-16 lg:w-24 h-2.5 sm:h-3.5 bg-[#17183F] rounded-full" />
+              </div>
             </div>
 
-            {/* Sleek Pill Action Button */}
-            <div>
-              <button
-                onClick={showContactModal}
-                className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/95 backdrop-blur-md border border-[#17183F]/15 text-xs font-bold text-[#17183F] hover:bg-white hover:border-[#6F86F8] hover:text-[#6F86F8] transition-all cursor-pointer shadow-sm hover:scale-[1.02]"
-              >
-                <span>Get in touch</span>
-                <span className="text-xs">✉️</span>
-                <span className="font-mono text-[11px] text-[#73758A]">hello@looply.local ↗</span>
-              </button>
-            </div>
           </div>
 
           {/* Prototype Reassurance Tag */}

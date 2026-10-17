@@ -1,21 +1,26 @@
 import React from 'react';
 import { Button } from './common/Button';
 import { DeviceMockups } from './DeviceMockups';
+import { MaskedHeading } from './MaskedHeading';
 import { Sparkles } from 'lucide-react';
+
+import type { AppScreenshotItem } from '../data/appScreenshots';
 
 interface HeroSectionProps {
   onExploreClick: () => void;
   onHowItWorksClick: () => void;
   savedCount: number;
+  onPreviewMockup?: (screenshot: AppScreenshotItem) => void;
 }
 
 export const HeroSection: React.FC<HeroSectionProps> = ({
   onExploreClick,
   onHowItWorksClick,
   savedCount,
+  onPreviewMockup,
 }) => {
   return (
-    <section className="relative pt-12 pb-16 md:pt-20 md:pb-24 overflow-hidden text-center bg-gradient-to-b from-white via-[#FAFAFC] to-white">
+    <section className="relative pt-24 pb-16 md:pt-32 md:pb-24 overflow-hidden text-center bg-gradient-to-b from-white via-[#FAFAFC] to-white">
       <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Eyebrow Badge */}
         <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#E8EBFF] text-[#17183F] text-xs sm:text-sm font-semibold tracking-wide uppercase mb-6 shadow-xs border border-[#D5D8E8]/50">
@@ -23,10 +28,28 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
           <span>A LITTLE MORE LIFE, NEARBY</span>
         </div>
 
-        {/* Main Headline */}
-        <h1 className="text-4xl sm:text-5xl md:text-6xl font-extrabold text-[#17183F] tracking-tight leading-[1.12] max-w-3xl mx-auto font-heading mb-6">
-          Find something worth going out for.
-        </h1>
+        {/* Main Headline with MaskedHeading component */}
+        <div className="max-w-4xl mx-auto mb-6">
+          <MaskedHeading
+            tag="h1"
+            text="Find something worth going out for."
+            src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1600&q=80"
+            fillScale={1.35}
+            parallax={22}
+            drift={14}
+            hoverZoom={0.05}
+            reveal="rise"
+            duration={1.1}
+            stagger={0.08}
+            align="center"
+            weight={900}
+            tracking={-0.035}
+            textScale={0.082}
+            tint="rgba(23, 24, 63, 0.2)"
+            spotlight={true}
+            className="font-heading text-[#17183F]"
+          />
+        </div>
 
         {/* Supporting Text */}
         <p className="text-base sm:text-lg md:text-xl text-[#73758A] max-w-2xl mx-auto leading-relaxed mb-8">
@@ -62,7 +85,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
       </div>
 
       {/* Device Mockups Preview */}
-      <DeviceMockups savedCount={savedCount} />
+      <DeviceMockups savedCount={savedCount} onPreviewMockup={onPreviewMockup} />
     </section>
   );
 };

@@ -1,20 +1,20 @@
 import React from 'react';
 import { Button } from './common/Button';
 import { ArrowRight, Sparkles } from 'lucide-react';
-import { ACTIVITIES } from '../data/activities';
+import { APP_SCREENSHOTS, type AppScreenshotItem } from '../data/appScreenshots';
+import { PhoneFrame } from './common/PhoneFrame';
 
 interface FinalCTAProps {
   onExploreClick: () => void;
   onHowItWorksClick: () => void;
+  onPreviewMockup?: (screenshot: AppScreenshotItem) => void;
 }
 
 export const FinalCTA: React.FC<FinalCTAProps> = ({
   onExploreClick,
   onHowItWorksClick,
+  onPreviewMockup,
 }) => {
-  const walkActivity = ACTIVITIES[0];
-  const foodActivity = ACTIVITIES[1];
-
   return (
     <section className="py-16 md:py-24 bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -67,71 +67,26 @@ export const FinalCTA: React.FC<FinalCTAProps> = ({
               </div>
             </div>
 
-            {/* Right Column: Cropped Mobile App Preview */}
+            {/* Right Column: Real Mobile App Preview in Phone Chassis */}
             <div className="lg:col-span-5 flex justify-center lg:justify-end">
-              <div className="w-full max-w-[320px] bg-[#17183F] p-3 rounded-[36px] shadow-2xl border-4 border-[#17183F] transform lg:rotate-2 hover:rotate-0 transition-transform duration-300">
-                <div className="bg-white rounded-[26px] overflow-hidden p-4 space-y-3 text-left">
-                  {/* Phone Header */}
-                  <div className="flex justify-between items-center pb-2 border-b border-[#F0F1F6]">
-                    <span className="font-heading font-extrabold text-xs text-[#17183F]">
-                      looply
-                    </span>
-                    <span className="text-[10px] bg-[#EEF1FF] text-[#6F86F8] font-bold px-2 py-0.5 rounded-full">
-                      Feed
-                    </span>
-                  </div>
+              <div
+                onClick={() => onPreviewMockup?.(APP_SCREENSHOTS.homescreen)}
+                className="w-full max-w-[290px] sm:max-w-[310px] transform lg:rotate-2 hover:rotate-0 transition-transform duration-300 cursor-pointer group"
+                title="Click to view Homescreen"
+              >
+                <PhoneFrame
+                  src={APP_SCREENSHOTS.homescreen.src}
+                  alt={APP_SCREENSHOTS.homescreen.alt}
+                  badge="Live App Feed"
+                  showGlow={true}
+                  glowColor="rgba(111, 134, 248, 0.25)"
+                  className="w-full"
+                />
 
-                  {/* Filter chips preview */}
-                  <div className="flex gap-1.5">
-                    <span className="text-[10px] font-bold bg-[#6F86F8] text-white px-2 py-0.5 rounded-full">
-                      All
-                    </span>
-                    <span className="text-[10px] bg-[#FAFAFC] text-[#73758A] px-2 py-0.5 rounded-full border border-[#E6E7EF]">
-                      Walk
-                    </span>
-                    <span className="text-[10px] bg-[#FAFAFC] text-[#73758A] px-2 py-0.5 rounded-full border border-[#E6E7EF]">
-                      Food
-                    </span>
-                    <span className="text-[10px] bg-[#FAFAFC] text-[#73758A] px-2 py-0.5 rounded-full border border-[#E6E7EF]">
-                      Art
-                    </span>
-                  </div>
-
-                  {/* Activity preview snippet 1 */}
-                  <div className="bg-[#FAFAFC] p-2 rounded-xl border border-[#E6E7EF] flex gap-2.5 items-center">
-                    <img
-                      src={walkActivity.image}
-                      alt={walkActivity.title}
-                      className="w-11 h-11 rounded-lg object-cover shrink-0"
-                    />
-                    <div className="min-w-0 flex-1">
-                      <span className="text-[9px] text-[#6F86F8] font-bold uppercase block">
-                        Walk
-                      </span>
-                      <h5 className="font-bold text-xs text-[#17183F] truncate">
-                        {walkActivity.title}
-                      </h5>
-                      <span className="text-[10px] text-[#73758A]">{walkActivity.duration}</span>
-                    </div>
-                  </div>
-
-                  {/* Activity preview snippet 2 */}
-                  <div className="bg-[#FAFAFC] p-2 rounded-xl border border-[#E6E7EF] flex gap-2.5 items-center">
-                    <img
-                      src={foodActivity.image}
-                      alt={foodActivity.title}
-                      className="w-11 h-11 rounded-lg object-cover shrink-0"
-                    />
-                    <div className="min-w-0 flex-1">
-                      <span className="text-[9px] text-[#D97706] font-bold uppercase block">
-                        Food
-                      </span>
-                      <h5 className="font-bold text-xs text-[#17183F] truncate">
-                        {foodActivity.title}
-                      </h5>
-                      <span className="text-[10px] text-[#73758A]">{foodActivity.duration}</span>
-                    </div>
-                  </div>
+                <div className="text-center mt-3">
+                  <span className="text-[11px] font-semibold text-[#17183F] bg-white/80 px-2.5 py-0.5 rounded-full border border-[#D5D8E8] shadow-xs">
+                    Browse freely · Tap to expand
+                  </span>
                 </div>
               </div>
             </div>

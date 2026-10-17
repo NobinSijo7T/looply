@@ -1,23 +1,27 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Navbar } from './components/Navbar';
 import { HeroSection } from './components/HeroSection';
 import { ActivityDiscovery } from './components/ActivityDiscovery';
 import { FeatureGrid } from './components/FeatureGrid';
 import { HowItWorks } from './components/HowItWorks';
+import { DriftWallSection } from './components/DriftWallSection';
 import { WhyLooply } from './components/WhyLooply';
+import { ScrollExpandSection } from './components/ScrollExpandSection';
 import { FAQSection } from './components/FAQSection';
 import { FinalCTA } from './components/FinalCTA';
 import { Footer } from './components/Footer';
+import { initLenis, smoothScrollTo } from './utils/lenis';
 
 // Modals
 import { SaveExplanationModal } from './components/modals/SaveExplanationModal';
 import { RegistrationModal } from './components/modals/RegistrationModal';
 import { SaveSuccessModal } from './components/modals/SaveSuccessModal';
-import { SavedActivitiesDrawer } from './components/modals/SavedActivitiesDrawer';
 import { ActivityDetailModal } from './components/modals/ActivityDetailModal';
 import { SignInModal } from './components/modals/SignInModal';
 import { ShareModal } from './components/modals/ShareModal';
 import { InfoModal } from './components/modals/InfoModal';
+import { MockupLightboxModal } from './components/modals/MockupLightboxModal';
+import type { AppScreenshotItem } from './data/appScreenshots';
 
 import type { Activity, ModalType, InfoModalContent } from './types';
 
@@ -28,11 +32,19 @@ export function App() {
   const [selectedActivity, setSelectedActivity] = useState<Activity | null>(null);
   const [activeModal, setActiveModal] = useState<ModalType>(null);
   const [infoModalContent, setInfoModalContent] = useState<InfoModalContent | null>(null);
+  const [previewScreenshot, setPreviewScreenshot] = useState<AppScreenshotItem | null>(null);
 
-  // Smooth scroll helper
+  // Initialize Lenis smooth scroll on mount
+  useEffect(() => {
+    const lenis = initLenis();
+    return () => {
+      lenis?.destroy();
+    };
+  }, []);
+
+  // Smooth scroll helper powered by Lenis
   const scrollTo = (id: string) => {
-    const el = document.getElementById(id);
-    if (el) el.scrollIntoView({ behavior: 'smooth' });
+    smoothScrollTo(id, -80);
   };
 
   // Trigger Save on an activity
@@ -100,7 +112,6 @@ export function App() {
       <Navbar
         savedCount={savedActivityIds.length}
         onOpenSavedList={() => setActiveModal('saved_list')}
-        onOpenSignIn={() => setActiveModal('sign_in')}
       />
 
       <main className="flex-1">
@@ -127,8 +138,14 @@ export function App() {
         {/* 6. How Looply Works */}
         <HowItWorks />
 
+        {/* 6.5. 3D Interactive Drift Wall Showcase */}
+        <DriftWallSection onExploreClick={() => scrollTo('discovery')} />
+
         {/* 7. Why Looply Section */}
         <WhyLooply />
+
+        {/* 7.5. Full-Bleed Scroll Expand Experience */}
+        <ScrollExpandSection onExploreClick={() => scrollTo('discovery')} />
 
         {/* 8. Frequently Asked Questions */}
         <FAQSection />
