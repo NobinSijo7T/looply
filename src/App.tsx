@@ -19,11 +19,7 @@ import { SignInModal } from './components/modals/SignInModal';
 import { ShareModal } from './components/modals/ShareModal';
 import { InfoModal } from './components/modals/InfoModal';
 
-// Reviewer demo controller
-import { DemoController } from './components/common/DemoController';
-
 import type { Activity, ModalType, InfoModalContent } from './types';
-import { ACTIVITIES } from './data/activities';
 
 export function App() {
   // Session & Prototype state
@@ -31,9 +27,6 @@ export function App() {
   const [isAuthenticated, setIsAuthenticated] = useState<boolean>(false);
   const [selectedActivity, setSelectedActivity] = useState<Activity | null>(null);
   const [activeModal, setActiveModal] = useState<ModalType>(null);
-  
-  // Reviewer test configuration
-  const [forceNetworkError, setForceNetworkError] = useState<boolean>(false);
   const [infoModalContent, setInfoModalContent] = useState<InfoModalContent | null>(null);
 
   // Smooth scroll helper
@@ -99,15 +92,6 @@ export function App() {
   const handleOpenInfoModal = (content: InfoModalContent) => {
     setInfoModalContent(content);
     setActiveModal('info');
-  };
-
-  // Reset prototype session for reviewer
-  const handleResetSession = () => {
-    setSavedActivityIds([]);
-    setIsAuthenticated(false);
-    setSelectedActivity(null);
-    setActiveModal(null);
-    setForceNetworkError(false);
   };
 
   return (
@@ -176,7 +160,6 @@ export function App() {
       <RegistrationModal
         activity={selectedActivity}
         isOpen={activeModal === 'registration'}
-        forceNetworkError={forceNetworkError}
         onClose={() => setActiveModal(null)}
         onBack={() => setActiveModal('save_explanation')}
         onSuccess={handleRegistrationSuccess}
@@ -237,19 +220,6 @@ export function App() {
         }}
       />
 
-      {/* Discretely placed reviewer prototype demo controller */}
-      <DemoController
-        forceNetworkError={forceNetworkError}
-        onToggleForceNetworkError={() => setForceNetworkError((prev) => !prev)}
-        onTriggerSaveFlow={() => {
-          const act = ACTIVITIES[0];
-          setSelectedActivity(act);
-          setActiveModal('save_explanation');
-        }}
-        onOpenSavedList={() => setActiveModal('saved_list')}
-        onResetSession={handleResetSession}
-        savedCount={savedActivityIds.length}
-      />
     </div>
   );
 }
