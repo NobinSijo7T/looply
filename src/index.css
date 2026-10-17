@@ -1,0 +1,55 @@
+@import "tailwindcss";
+
+@theme {
+  --color-looply-blue: #6F86F8;
+  --color-looply-blue-hover: #5B74EC;
+  --color-looply-navy: #17183F;
+  --color-looply-text: #202139;
+  --color-looply-muted: #73758A;
+  --color-looply-bg: #FFFFFF;
+  --color-looply-soft: #FAFAFC;
+  --color-looply-pale: #EEF1FF;
+  --color-looply-lavender: #E8EBFF;
+  --color-looply-mint: #BDF4DE;
+  --color-looply-border: #E6E7EF;
+  --color-looply-error: #D94A58;
+  --color-looply-success: #17865D;
+
+  --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-heading: 'Manrope', 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+:root {
+  font-family: var(--font-sans);
+  color: #202139;
+  background-color: #FFFFFF;
+}
+
+/* Custom focus ring styling for a11y */
+*:focus-visible {
+  outline: 2px solid #6F86F8;
+  outline-offset: 2px;
+}
+
+/* Smooth transitions */
+button, a, input, select, textarea {
+  transition-property: color, background-color, border-color, box-shadow, transform, opacity;
+  transition-duration: 150ms;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Custom scrollbar for modern browsers */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #FAFAFC;
+}
+::-webkit-scrollbar-thumb {
+  background: #D5D8E8;
+  border-radius: 9999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #6F86F8;
+}
